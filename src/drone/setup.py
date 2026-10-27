@@ -10,10 +10,17 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/rsp.launch.py']),
+        ('share/' + package_name + '/launch', [
+            'launch/rsp.launch.py',
+            'launch/launch_sim.launch.py',
+        ]),
         ('share/' + package_name + '/description', [
             'drone/description/drone.urdf.xacro',
             'drone/description/drone_core.xacro',
+            'drone/description/gazebo.xacro',
+        ]),
+        ('share/' + package_name + '/rviz', [
+            'rviz/drone.rviz',
         ]),
     ],
     install_requires=['setuptools'],

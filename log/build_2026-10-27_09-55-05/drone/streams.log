@@ -1,0 +1,16 @@
+[0.753s] Invoking command in '/home/onlydrones/nidar/build/drone': PYTHONPATH=/home/onlydrones/nidar/build/drone/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/onlydrones/nidar/install/drone/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/onlydrones/nidar/build/drone/build --no-deps symlink_data
+[0.985s] running develop
+[1.120s] running egg_info
+[1.120s] writing drone.egg-info/PKG-INFO
+[1.121s] writing dependency_links to drone.egg-info/dependency_links.txt
+[1.121s] writing entry points to drone.egg-info/entry_points.txt
+[1.121s] writing requirements to drone.egg-info/requires.txt
+[1.121s] writing top-level names to drone.egg-info/top_level.txt
+[1.122s] reading manifest file 'drone.egg-info/SOURCES.txt'
+[1.123s] writing manifest file 'drone.egg-info/SOURCES.txt'
+[1.124s] running build_ext
+[1.124s] Creating /home/onlydrones/nidar/install/drone/lib/python3.10/site-packages/drone.egg-link (link to .)
+[1.125s] 
+[1.125s] Installed /home/onlydrones/nidar/build/drone
+[1.125s] running symlink_data
+[1.161s] Invoked command in '/home/onlydrones/nidar/build/drone' returned '0': PYTHONPATH=/home/onlydrones/nidar/build/drone/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/onlydrones/nidar/install/drone/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/onlydrones/nidar/build/drone/build --no-deps symlink_data
