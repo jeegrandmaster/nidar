@@ -5,6 +5,11 @@
     <material>Gazebo/DarkGrey</material>
     <mu1>0.8</mu1>
     <mu2>0.8</mu2>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>1000</update_rate>
+      <visualize>false</visualize>
+    </sensor>
   </gazebo>
 
   <gazebo reference="front_right_rotor">
@@ -42,6 +47,50 @@
   </gazebo>
   <gazebo reference="rear_left_rotor_joint">
     <dynamics damping="0.001" friction="0.001"/>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="arducopter_plugin" filename="libArduPilotPlugin.so">
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9002</fdm_port_in>
+      <fdm_port_out>9003</fdm_port_out>
+      <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
+      <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
+      <imuName>nidar_drone::base_link::imu_sensor</imuName>
+      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+      <control channel="0">
+        <type>VELOCITY</type>
+        <p_gain>0.20</p_gain>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <jointName>front_right_rotor_joint</jointName>
+        <multiplier>838</multiplier>
+      </control>
+      <control channel="1">
+        <type>VELOCITY</type>
+        <p_gain>0.20</p_gain>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <jointName>front_left_rotor_joint</jointName>
+        <multiplier>838</multiplier>
+      </control>
+      <control channel="2">
+        <type>VELOCITY</type>
+        <p_gain>0.20</p_gain>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <jointName>rear_right_rotor_joint</jointName>
+        <multiplier>-838</multiplier>
+      </control>
+      <control channel="3">
+        <type>VELOCITY</type>
+        <p_gain>0.20</p_gain>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <jointName>rear_left_rotor_joint</jointName>
+        <multiplier>-838</multiplier>
+      </control>
+    </plugin>
   </gazebo>
 
 </robot>

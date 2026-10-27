@@ -18,6 +18,8 @@ def generate_launch_description():
     gazebo_share = get_package_share_directory('gazebo_ros')
     rviz_config = os.path.join(package_share, 'rviz', 'drone.rviz')
     gui = LaunchConfiguration('gui')
+    sitl = LaunchConfiguration('sitl')
+    sim_vehicle = LaunchConfiguration('sim_vehicle')
     description_file = os.path.join(
         package_share,
         'description',
@@ -31,6 +33,16 @@ def generate_launch_description():
             'gui',
             default_value='true',
             description='Start the Gazebo Classic GUI client.',
+        ),
+        DeclareLaunchArgument(
+            'sitl',
+            default_value='false',
+            description='Start ArduPilot SITL after Gazebo is ready.',
+        ),
+        DeclareLaunchArgument(
+            'sim_vehicle',
+            default_value='sim_vehicle.py',
+            description='Path to ArduPilot sim_vehicle.py.',
         ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
@@ -50,9 +62,9 @@ def generate_launch_description():
             parameters=[{'robot_description': robot_description}],
         ),
         Node(
-            package='joint_state_publisher_gui',
-            executable='joint_state_publisher_gui',
-            name='joint_state_publisher_gui',
+            package='joint_state_publisher',
+            executable='joint_state_publisher',
+            name='joint_state_publisher',
             output='screen',
         ),
         TimerAction(
@@ -70,6 +82,25 @@ def generate_launch_description():
                         '0.5',
                     ],
                     output='screen',
+                ),
+            ],
+        ),
+        TimerAction(
+            period=5.0,
+            actions=[
+                ExecuteProcess(
+                    cmd=[
+                        sim_vehicle,
+                        '-v',
+                        'ArduCopter',
+                        '-f',
+                        'gazebo-iris',
+                        '--model',
+                        'JSON',
+                        '--console',
+                    ],
+                    output='screen',
+                    condition=IfCondition(sitl),
                 ),
             ],
         ),
